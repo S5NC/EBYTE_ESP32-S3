@@ -6,7 +6,7 @@ This is an 8-layer board which uses JLCPCB's JLC08161H-2116 to base the controll
 Photos from the 3D render of EasyEDA Pro don't show the plating/solder mask (and epoxy fill) of vias. The actual PCB doesn't have holes where these 0.3mm and 0.4mm inner diameter vias are, and also has 'via-in-pad's. 
 
 ## Tips
-This board is capable of outputting a claimed 30 dBm though ~29.25 dBm is more realistic. Make sure you respect local regulations, more information is in the board's variant.h file found in [this directory](https://github.com/meshtastic/firmware/tree/master/variants/EBYTE_ESP32-S3).
+This board is capable of outputting a claimed 30 dBm though ~29.5 dBm is more realistic. Make sure you respect local regulations, more information, also regarding how the software works with the board, is in the variant.h file found in [this directory](https://github.com/meshtastic/firmware/tree/master/variants/EBYTE_ESP32-S3).
 
 RP-SMA is preferred even though it is less common in Europe, as it ensures there is no change of having a void connection between an SMA female board and RP-SMA male antenna. Also, with insertions the pin the slot end is worn more than the pin, it's easier to change antenna or antenna connector than replace the soldered connector on the board.
 
@@ -17,3 +17,5 @@ More tips can be found on the text of the schematic and PCB silkscreen, as well 
 ## Next steps
 
 Future possibilities for improvements are on the schematic.
+
+The ESP32 is very power hungry compared to the nRF52840, especially for Bluetooth. Powered by 5.2 V, this board will draw ~100 mA when the Bluetooth is turned on and receiving, and ~650 mA when transmitting (and Bluetooth powered on) (technically this should be 750 mA, 100 mA + 650 mA from the E22-900M30S's datasheet). Using a DC-DC converter could give some improvement for the 3.3 V powered device (ESP32, and any I2C devices and/or GPS you add). Making a way to turn the Bluetooth off after a time interval with no connection has passed, and turning it back on when a button (such as the BOOT) is pressed, could be used but only if the device can be physically accessed. If it is mounted on top of a pole, this would not work. Other options may be putting the ESP32 into a power saving Bluetooth mode if such thing exists, and listening for a beacon packet from a phone which would like to scan for nearby boards?
