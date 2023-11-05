@@ -16,6 +16,8 @@ More tips can be found on the text of the schematic and PCB silkscreen, as well 
 
 ## Next steps
 
-Future possibilities for improvements are on the schematic.
+Increase mounting hole diameter to 2.2mm from 2.1mm, keep outer diameter at 3.5mm, or expand to 4.25mm and move other components. <b>Currently small-head screws and round metal standoffs are required as they have a diameter of only 3.5 mm, instead of 4+ mm which may cause other components to be hit.</b>
+
+More future possibilities for improvements are on the schematic.
 
 The ESP32 is very power hungry compared to the nRF52840, especially for Bluetooth. Powered by 5.2 V, this board will draw ~100 mA when the Bluetooth is turned on and receiving, and ~650 mA when transmitting (and Bluetooth powered on) (technically this should be 750 mA, 100 mA + 650 mA from the E22-900M30S's datasheet). Using a DC-DC converter could give some improvement for the 3.3 V powered device (ESP32, and any I2C devices and/or GPS you add). Making a way to turn the Bluetooth off after a time interval with no connection has passed, and turning it back on when a button (such as the BOOT) is pressed, could be used but only if the device can be physically accessed. If it is mounted on top of a pole, this would not work. Other options may be putting the ESP32 into a power saving Bluetooth mode if such thing exists, and listening for a beacon packet from a phone which would like to scan for nearby boards?
