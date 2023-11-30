@@ -16,6 +16,8 @@ More tips can be found on the text of the schematic and PCB silkscreen, as well 
 
 ## Next steps
 
+Add RC delay circuit to MAX809T input voltage, or find a way to remove it completely and still turn on consistantly (not in hung state) when power is quickly cycled, or turned on when all capacitors are fully discharged.
+
 More future possibilities for improvements are on the schematic.
 
 The ESP32 is very power hungry compared to the nRF52840, especially for Bluetooth. Powered by 5.2 V, this board will draw ~100 mA when the Bluetooth is turned on and receiving, and ~650 mA when transmitting (and Bluetooth powered on) (technically this should be 750 mA, 100 mA + 650 mA from the E22-900M30S's datasheet). Using a DC-DC converter could give some improvement for the 3.3 V powered device (ESP32, and any I2C devices and/or GPS you add). Making a way to turn the Bluetooth off after a time interval with no connection has passed, and turning it back on when a button (such as the BOOT) is pressed, could be used but only if the device can be physically accessed. If it is mounted on top of a pole, this would not work. Other options may be putting the ESP32 into a power saving Bluetooth mode if such thing exists, and listening for a beacon packet from a phone which would like to scan for nearby boards?
